@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  flutter:
+    build: ../pre-images/flutter-builds
+    ports:
+      - 4200:4200
+    depends_on:
+      - android-sdk
+    environment:
+     - GIT_LINK=https://github.com/ghostmatem/hello-world-app
+      
+  android-sdk:
+    image: ../pre-images/android-sdk
+    ports:
+      - 3000:3000
