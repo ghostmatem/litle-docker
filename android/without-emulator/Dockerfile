@@ -18,9 +18,9 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
 
 # Android install config
 ENV ANDROID_COMMAND_TOOLS_URL       https://dl.google.com/android/repository/commandlinetools-linux-6200805_latest.zip
-ENV ANDROID_VERSION                 30
-ENV ANDROID_BUILD_TOOLS_VERSION     28.0.3
-ENV ANDROID_PLATFORM_TOOLS_VERSION  28.0.3
+ENV ANDROID_VERSION                 latest
+ENV ANDROID_BUILD_TOOLS_VERSION     latest
+ENV ANDROID_PLATFORM_TOOLS_VERSION  latest
 
 # Android - sdk
 RUN wget $ANDROID_COMMAND_TOOLS_URL \
