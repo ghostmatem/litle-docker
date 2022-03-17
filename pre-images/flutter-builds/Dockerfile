@@ -2,10 +2,10 @@ FROM fischerscode/flutter
 
 USER root:root
 
-ENV ANDROID_HOME      android-sdk:3000/opt/android-sdk-linux
-ENV ANDROID_SDK_HOME  ${ANDROID_HOME}
-ENV ANDROID_SDK_ROOT  ${ANDROID_HOME}
-ENV ANDROID_SDK       ${ANDROID_HOME}
+ENV ANDROID_HOME=android-sdk:3000/opt/android-sdk-linux
+ENV ANDROID_SDK_HOME=${ANDROID_HOME}
+ENV ANDROID_SDK_ROOT=${ANDROID_HOME}
+ENV ANDROID_SDK=${ANDROID_HOME}
 
 ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin"
 ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/tools/bin"
