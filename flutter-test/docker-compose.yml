@@ -1,7 +1,0 @@
-version: "3.9"
-
-services:
-  flutter:
-    build: .
-    environment:
-     - GIT_LINK=https://github.com/ghostmatem/hello-world-app

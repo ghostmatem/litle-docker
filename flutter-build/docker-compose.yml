@@ -1,9 +1,0 @@
-version: "3.9"
-
-services:
-  flutter:
-    build: ../pre-images/flutter-builds
-    ports:
-      - 80:80
-    volumes:
-      - /pre-images/app:/home/app
