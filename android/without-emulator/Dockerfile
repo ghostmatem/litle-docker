@@ -6,7 +6,7 @@ ENV ANDROID_HOME                    $DEV_ROOT/Android/SDK
 ENV ANDROID_SDK_HOME                $ANDROID_HOME
 ENV ANDROID_SDK_ROOT                $ANDROID_HOME
 ENV ANDROID_SDK                     $ANDROID_HOME
-ENV ANDROID_SDK_MANAGER             $ANDROID_HOME/bin/sdkmanager
+ENV ANDROID_SDK_MANAGER             $ANDROID_HOME/bin
 
 # Java install config
 ENV JAVA_VERSION                    11
@@ -32,8 +32,8 @@ RUN wget $ANDROID_COMMAND_TOOLS_URL \
         && $ANDROID_SDK_MANAGER/sdkmanager --sdk_root=${ANDROID_HOME} "tools" \
         && $ANDROID_SDK_MANAGER/sdkmanager --update \
         && $ANDROID_SDK_MANAGER/sdkmanager --list \
-        && yes="y" | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" "tools"\
-        && yes="y" | sdkmanager "platform-tools;$ANDROID_PLATFORM_TOOLS_VERSION" "tools"\
-        && yes="y" | sdkmanager "platforms;android-$ANDROID_VERSION" "tools" \
-        && yes="y" | sdkmanager --licenses \
+        && yes="y" | $ANDROID_SDK_MANAGER/sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" "tools"\
+        && yes="y" | $ANDROID_SDK_MANAGER/sdkmanager "platform-tools;$ANDROID_PLATFORM_TOOLS_VERSION" "tools"\
+        && yes="y" | $ANDROID_SDK_MANAGER/sdkmanager "platforms;android-$ANDROID_VERSION" "tools" \
+        && yes="y" | $ANDROID_SDK_MANAGER/sdkmanager --licenses \
         && yes="y" | apt install gradle
