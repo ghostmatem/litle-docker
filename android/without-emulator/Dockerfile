@@ -4,9 +4,9 @@ FROM ubuntu:20.04
 ENV DEV_ROOT                        home/dev-tools
 ENV ANDROID_HOME                    $DEV_ROOT/Android/SDK
 ENV ANDROID_SDK_HOME                $ANDROID_HOME
-ENV ANDROID_SDK_ROOT                $ANDROID_HOME
 ENV ANDROID_SDK                     $ANDROID_HOME
-ENV ANDROID_SDK_MANAGER             $ANDROID_HOME/cmdline-tools/bin
+ENV ANDROID_SDK_ROOT                $ANDROID_HOME/cmdline-tools
+ENV ANDROID_SDK_MANAGER             $ANDROID_SDK_ROOT/bin
 
 # Java install config
 ENV JAVA_VERSION                    11
@@ -29,7 +29,7 @@ RUN wget $ANDROID_COMMAND_TOOLS_URL \
     && unzip $ANDROID_COMMAND_TOOLS_PATH -d $ANDROID_HOME \
     && rm $ANDROID_COMMAND_TOOLS_PATH \
     && export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools:$ANDROID_HOME/cmdline-tools/bin:$ANDROID_HOME/platform-tools:$PATH" \
-        && $ANDROID_SDK_MANAGER/sdkmanager --sdk_root=${ANDROID_HOME}  \
+        && $ANDROID_SDK_MANAGER/sdkmanager --sdk_root=${ANDROID_SDK_ROOT} \
         && $ANDROID_SDK_MANAGER/sdkmanager --update \
         && $ANDROID_SDK_MANAGER/sdkmanager --list \
         && yes="y" | $ANDROID_SDK_MANAGER/sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \
