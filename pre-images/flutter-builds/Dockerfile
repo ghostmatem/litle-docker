@@ -2,7 +2,7 @@ FROM fischerscode/flutter
 
 USER root:root
 
-ENV ANDROID_HOME=android-sdk:3000/opt/android-sdk-linux
+ENV ANDROID_HOME=sdk/opt/android-sdk-linux
 ENV ANDROID_SDK_HOME=${ANDROID_HOME}
 ENV ANDROID_SDK_ROOT=${ANDROID_HOME}
 ENV ANDROID_SDK=${ANDROID_HOME}
