@@ -11,8 +11,9 @@ ENV ANDROID_SDK                     $ANDROID_HOME
 ENV JAVA_VERSION                    11
 
 # Open - jdk
-RUN apt update && apt-get install --yes --no-install-recommends \ 
+RUN apt-get update && apt-get install --yes --no-install-recommends \ 
     openjdk-$JAVA_VERSION-jre-headless \ 
+    wget \
     && rm -rf /var/lib/{apt,dpkg,cache,log}
 
 # Android install config
