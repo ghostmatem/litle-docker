@@ -6,6 +6,7 @@ ENV ANDROID_HOME                    $DEV_ROOT/Android/SDK
 ENV ANDROID_SDK_HOME                $ANDROID_HOME
 ENV ANDROID_SDK_ROOT                $ANDROID_HOME
 ENV ANDROID_SDK                     $ANDROID_HOME
+ENV ANDROID_SDK_MANAGER             $ANDROID_HOME/bin/sdkmanager
 
 # Java install config
 ENV JAVA_VERSION                    11
@@ -28,9 +29,9 @@ RUN wget $ANDROID_COMMAND_TOOLS_URL \
     && unzip $ANDROID_COMMAND_TOOLS_PATH -d $ANDROID_HOME \
     && rm $ANDROID_COMMAND_TOOLS_PATH \
     && export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH" \
-        && sdkmanager --sdk_root=${ANDROID_HOME} "tools" \
-        && sdkmanager --update \
-        && sdkmanager --list \
+        && $ANDROID_SDK_MANAGER/sdkmanager --sdk_root=${ANDROID_HOME} "tools" \
+        && $ANDROID_SDK_MANAGER/sdkmanager --update \
+        && $ANDROID_SDK_MANAGER/sdkmanager --list \
         && yes="y" | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" "tools"\
         && yes="y" | sdkmanager "platform-tools;$ANDROID_PLATFORM_TOOLS_VERSION" "tools"\
         && yes="y" | sdkmanager "platforms;android-$ANDROID_VERSION" "tools" \
