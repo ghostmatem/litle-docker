@@ -14,10 +14,11 @@ ENV JAVA_VERSION                    11
 RUN apt-get update && apt-get install --yes --no-install-recommends \ 
     openjdk-$JAVA_VERSION-jre-headless \ 
     wget \
+    unzip \
     && rm -rf /var/lib/{apt,dpkg,cache,log}
 
 # Android install config
-ENV ANDROID_COMMAND_TOOLS_URL       https://dl.google.com/android/repository/commandlinetools-linux-6200805_latest.zip
+ENV ANDROID_COMMAND_TOOLS_URL       https://dl.google.com/android/repository/commandlinetools-linux-8092744_latest.zip
 ENV ANDROID_VERSION                 latest
 ENV ANDROID_BUILD_TOOLS_VERSION     latest
 ENV ANDROID_PLATFORM_TOOLS_VERSION  latest
