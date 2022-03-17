@@ -30,7 +30,12 @@ RUN dpkg --add-architecture i386 && \
     openjdk-11-jdk wget unzip vim && \
     apt-get clean
 
+RUN groupadd android && useradd -d ${ANDROID_HOME} -g android android
+
+COPY tools ${IMAGE_INSTALL_ROOT}/tools
 COPY licenses ${IMAGE_INSTALL_ROOT}/licenses
+
+RUN ${IMAGE_INSTALL_ROOT}/tools/entrypoint.sh built-in
 
 # Установка Tools
 RUN ${IMAGE_INSTALL_ROOT}/tools/entrypoint.sh built-in && \
@@ -38,6 +43,8 @@ RUN ${IMAGE_INSTALL_ROOT}/tools/entrypoint.sh built-in && \
     ${ANDROID_HOME}/cmdline-tools/tools/bin/sdkmanager "build-tools;30.0.2"  && \
     ${ANDROID_HOME}/cmdline-tools/tools/bin/sdkmanager "platform-tools" && \
     ${ANDROID_HOME}/cmdline-tools/tools/bin/sdkmanager "platforms;android-30"
+
+USER root:root
 
 WORKDIR ${APP_PATH}
 
