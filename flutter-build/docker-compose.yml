@@ -4,17 +4,6 @@ services:
   flutter:
     build: ../pre-images/flutter-builds
     ports:
-      - 4200:4200
-    labels:
-      - flutter:4200=flutter
-    depends_on:
-      - android-sdk
-    environment:
-     - GIT_LINK=https://github.com/ghostmatem/hello-world-app
-      
-  android-sdk:
-    image: ../pre-images/android-sdk
-    labels:
-      - android-sdk:3000=sdk
-    ports:
-      - 3000:3000
+      - 80:80
+    volumes:
+      - /pre-images/app:/home/app
