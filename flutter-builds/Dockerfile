@@ -26,7 +26,8 @@ RUN mkdir -p $FLUTTER_SDK \
 RUN flutter precache \
   && flutter config --no-analytics \
   && flutter doctor \
-  && yes='Y' | flutter doctor --android-licenses
+  && yes='Y' | flutter doctor --android-licenses \
+  && flutter config --android-sdk "$ANDROID_SDK_ROOT"
 
 COPY entrypoint.sh $FLUTTER_HOME/
 

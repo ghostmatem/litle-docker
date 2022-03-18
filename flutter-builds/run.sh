@@ -1,5 +1,5 @@
 #!/bin/bash
 
 set -e
-
-docker run -it --rm -v ../app:home/app flutter-builder
+git clone https://github.com/ghostmatem/hello-world-app.git ../app
+docker run -it --rm -v ../app:/home/app flutter-builder

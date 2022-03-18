@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
 # Enviroments
-ENV DEV_ROOT                        home/dev-tools
+ENV DEV_ROOT                        /home/dev-tools
 ENV ANDROID_HOME                    $DEV_ROOT/Android/SDK
 ENV ANDROID_SDK_HOME                $ANDROID_HOME
 ENV ANDROID_SDK                     $ANDROID_HOME
