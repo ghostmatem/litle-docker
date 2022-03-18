@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 if [ "$1" == '-a' ]; then
 docker rmi android:clear
 im_here=$(pwd)

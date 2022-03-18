@@ -3,7 +3,7 @@ FROM android-sdk:clear
 ENV FLUTTER_HOME     $DEV_ROOT/flutter
 ENV FLUTTER_SDK      $FLUTTER_HOME/flutter-sdk
 ENV PORT             80
-ENV APP_PATH         $FLUTTER_HOME/app
+ENV APP_PATH         /home/app
 
 ENV PATH="${PATH}:$FLUTTER_SDK"
 ENV PATH="${PATH}:$FLUTTER_SDK/bin"
@@ -29,9 +29,9 @@ RUN flutter precache \
   && yes='Y' | flutter doctor --android-licenses \
   && flutter config --android-sdk "$ANDROID_SDK_ROOT"
 
-COPY entrypoint.sh $FLUTTER_HOME/
+WORKDIR $APP_PATH
 
-RUN mkdir $APP_PATH && cd $APP_PATH/
+COPY entrypoint.sh .
 
 EXPOSE ${PORT}
 

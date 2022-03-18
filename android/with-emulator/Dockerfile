@@ -46,14 +46,14 @@ ENV ANDROID_ARCHITECTURE            x86_64
 ENV ANDROID_PLATFORM_TOOLS_VERSION=""
 ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/build-tools/${ANDROID_BUILD_TOOLS_VERSION}"
 
-RUN sdkmanager --update \
-    && sdkmanager --list \
-    && yes="Y" | sdkmanager "platforms;android-$ANDROID_VERSION"  \
-    && yes="Y" | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \
-    && yes="Y" | sdkmanager "platform-tools$ANDROID_PLATFORM_TOOLS_VERSION" \
-    && yes="Y" | sdkmanager "tools" \
-    && yes "y" | sdkmanager "emulator" \
-    && yes "y" | sdkmanager "system-images;android-$ANDROID_VERSION;google_apis_playstore;$ANDROID_ARCHITECTURE"
+RUN yes | sdkmanager --licenses \
+    && yes | sdkmanager --update \
+    && yes | sdkmanager "platforms;android-$ANDROID_VERSION"  \
+      "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \
+      "platform-tools$ANDROID_PLATFORM_TOOLS_VERSION" \
+      "tools" \
+      "emulator" \
+      "system-images;android-$ANDROID_VERSION;google_apis_playstore;$ANDROID_ARCHITECTURE"
 
 
 # Gradle install

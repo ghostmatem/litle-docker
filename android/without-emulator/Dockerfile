@@ -42,13 +42,12 @@ ENV ANDROID_BUILD_TOOLS_VERSION     30.0.2
 ENV ANDROID_PLATFORM_TOOLS_VERSION=""
 ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/build-tools/${ANDROID_BUILD_TOOLS_VERSION}"
 
-RUN sdkmanager --update \
-    && sdkmanager --list \
-    && yes="Y" | sdkmanager "platforms;android-$ANDROID_VERSION"  \
-    && yes="Y" | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \
-    && yes="Y" | sdkmanager "platform-tools$ANDROID_PLATFORM_TOOLS_VERSION" \
-    && yes="Y" | sdkmanager "tools" 
-
+RUN yes | sdkmanager --licenses \
+    && yes | sdkmanager --update \
+    && yes | sdkmanager "platforms;android-$ANDROID_VERSION"  \
+      "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \
+      "platform-tools$ANDROID_PLATFORM_TOOLS_VERSION" \
+      "tools" 
 
 # Gradle install
 RUN apt-get --yes --no-install-recommends install gradle \
