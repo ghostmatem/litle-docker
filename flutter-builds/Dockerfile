@@ -1,4 +1,4 @@
-FROM android-sdk
+FROM android-sdk:clear
 
 ENV FLUTTER_HOME     $DEV_ROOT/flutter
 ENV FLUTTER_SDK      $FLUTTER_HOME/flutter-sdk
@@ -25,7 +25,8 @@ RUN mkdir -p $FLUTTER_SDK \
 
 RUN flutter precache \
   && flutter config --no-analytics \
-  && flutter doctor 
+  && flutter doctor \
+  && yes='Y' | flutter doctor --android-licenses
 
 COPY entrypoint.sh $FLUTTER_HOME/
 

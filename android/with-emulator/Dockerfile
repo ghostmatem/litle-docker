@@ -8,8 +8,15 @@ ENV ANDROID_SDK                     $ANDROID_HOME
 ENV ANDROID_SDK_ROOT                $ANDROID_HOME
 ENV ANDROID_COMMAND_TOOLS           $ANDROID_HOME/cmdline-tools
 
-ENV PATH="${PATH}:${ANDROID_HOME}/cmdline-tools/tools/bin"
-ENV PATH="${PATH}:${ANDROID_HOME}/platform-tools"
+ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin"
+ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin"
+ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/tools/bin"
+ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/platform-tools"
+ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/platforms"
+ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/emulator"
+ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/bin"
+
+
 
 
 # Java install
@@ -37,12 +44,14 @@ ENV ANDROID_ARCHITECTURE            x86_64
 
 # ex   ;30.0.4
 ENV ANDROID_PLATFORM_TOOLS_VERSION=""
+ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/build-tools/${ANDROID_BUILD_TOOLS_VERSION}"
 
 RUN sdkmanager --update \
     && sdkmanager --list \
     && yes="Y" | sdkmanager "platforms;android-$ANDROID_VERSION"  \
     && yes="Y" | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \
     && yes="Y" | sdkmanager "platform-tools$ANDROID_PLATFORM_TOOLS_VERSION" \
+    && yes="Y" | sdkmanager "tools" \
     && yes "y" | sdkmanager "emulator" \
     && yes "y" | sdkmanager "system-images;android-$ANDROID_VERSION;google_apis_playstore;$ANDROID_ARCHITECTURE"
 

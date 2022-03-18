@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 flutter clean
 flutter pub get
