@@ -1,28 +1,31 @@
 FROM android-sdk
 
 ENV FLUTTER_HOME     $DEV_ROOT/flutter
+ENV FLUTTER_SDK      $FLUTTER_HOME/flutter-sdk
 ENV PORT             80
 ENV APP_PATH         $FLUTTER_HOME/app
 
-ENV PATH="${PATH}:$FLUTTER_HOME/flutter-sdk/bin"
-ENV PATH="${PATH}:$FLUTTER_HOME/flutter-sdk/bin/cache/dart-sdk/bin"
+ENV PATH="${PATH}:$FLUTTER_SDK"
+ENV PATH="${PATH}:$FLUTTER_SDK/bin"
+ENV PATH="${PATH}:$FLUTTER_SDK/bin/cache/dart-sdk"
+ENV PATH="${PATH}:$FLUTTER_SDK/bin/cache/dart-sdk/bin"
 
+# Installing auxiliary packages
 RUN apt-get update && \
-    apt-get install --yes --no-install-recommends \
-    -y bash curl file git zip libglu1-mesa \
+    apt-get install --yes --no-install-recommends -y \
+    bash curl file git zip libglu1-mesa \
     && rm -rf /var/lib/apt/lists/*
-
-WORKDIR $FLUTTER_HOME
 
 ARG flutterVersion=stable
 
 ADD https://api.github.com/repos/flutter/flutter/compare/${flutterVersion}...${flutterVersion} /dev/null
 
-RUN git clone https://github.com/flutter/flutter.git -b ${flutterVersion} flutter-sdk \
-  && flutter-sdk/bin/flutter precache \
-  && flutter-sdk/bin/flutter config --no-analytics
+RUN mkdir -p $FLUTTER_SDK \
+  && git clone https://github.com/flutter/flutter.git -b ${flutterVersion} $FLUTTER_SDK
 
-RUN flutter doctor 
+RUN flutter precache \
+  && flutter config --no-analytics \
+  && flutter doctor 
 
 COPY entrypoint.sh $FLUTTER_HOME/
 
