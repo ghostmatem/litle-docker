@@ -45,8 +45,7 @@ ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/build-tools/${ANDROID_BUILD_TOOLS_VERSION}
 RUN yes | sdkmanager --licenses \
     && yes | sdkmanager "platforms;android-$ANDROID_VERSION"  \
       "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \
-      "platform-tools$ANDROID_PLATFORM_TOOLS_VERSION" \
-      "tools" 
+      "platform-tools$ANDROID_PLATFORM_TOOLS_VERSION" 
 
 # Gradle install
 RUN apt-get --yes --no-install-recommends install gradle \
