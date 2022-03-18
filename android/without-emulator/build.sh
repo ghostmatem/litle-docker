@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build . -t android-sdk:clear
+docker build . -t android-sdk:clean
