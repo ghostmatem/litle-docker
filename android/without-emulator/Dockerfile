@@ -43,7 +43,6 @@ ENV ANDROID_PLATFORM_TOOLS_VERSION=""
 ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/build-tools/${ANDROID_BUILD_TOOLS_VERSION}"
 
 RUN yes | sdkmanager --licenses \
-    && yes | sdkmanager --update \
     && yes | sdkmanager "platforms;android-$ANDROID_VERSION"  \
       "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \
       "platform-tools$ANDROID_PLATFORM_TOOLS_VERSION" \
