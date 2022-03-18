@@ -33,6 +33,7 @@ RUN wget $ANDROID_COMMAND_TOOLS_URL \
 # Android install build-tools
 ENV ANDROID_VERSION                 30
 ENV ANDROID_BUILD_TOOLS_VERSION     30.0.2
+ENV ANDROID_ARCHITECTURE            x86_64
 
 # ex   ;30.0.4
 ENV ANDROID_PLATFORM_TOOLS_VERSION=""
@@ -41,7 +42,9 @@ RUN sdkmanager --update \
     && sdkmanager --list \
     && yes="Y" | sdkmanager "platforms;android-$ANDROID_VERSION"  \
     && yes="Y" | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \
-    && yes="Y" | sdkmanager "platform-tools$ANDROID_PLATFORM_TOOLS_VERSION"
+    && yes="Y" | sdkmanager "platform-tools$ANDROID_PLATFORM_TOOLS_VERSION" \
+    && yes "y" | sdkmanager "emulator" \
+    && yes "y" | sdkmanager "system-images;android-$ANDROID_VERSION;google_apis_playstore;$ANDROID_ARCHITECTURE"
 
 
 # Gradle install
