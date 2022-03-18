@@ -8,8 +8,8 @@ ENV ANDROID_SDK                     $ANDROID_HOME
 ENV ANDROID_SDK_ROOT                $ANDROID_HOME
 ENV ANDROID_COMMAND_TOOLS           $ANDROID_HOME/cmdline-tools
 
-ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/tools/bin"
-ENV PATH "${PATH}:${ANDROID_HOME}/platform-tools"
+ENV PATH="${PATH}:${ANDROID_HOME}/cmdline-tools/tools/bin"
+ENV PATH="${PATH}:${ANDROID_HOME}/platform-tools"
 
 
 # Java install
