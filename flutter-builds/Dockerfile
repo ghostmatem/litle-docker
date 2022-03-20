@@ -1,4 +1,4 @@
-FROM android-sdk:clear
+FROM android-sdk:clean
 
 ENV FLUTTER_HOME     $DEV_ROOT/flutter
 ENV FLUTTER_SDK      $FLUTTER_HOME/flutter-sdk
@@ -13,7 +13,7 @@ ENV PATH="${PATH}:$FLUTTER_SDK/bin/cache/dart-sdk/bin"
 # Installing auxiliary packages
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends -y \
-    bash curl file git zip libglu1-mesa \
+    bash curl file git zip libglu1-mesa which xz-utils\
     && rm -rf /var/lib/apt/lists/*
 
 ARG flutterVersion=stable
