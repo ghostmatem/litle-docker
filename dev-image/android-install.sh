@@ -14,7 +14,7 @@ export PATH="$PATH:$ANDROID_SDK_ROOT/bin"
 
 export JAVA_VERSION="11"
 
-apt-get update && apt-get install --yes --no-install-recommends \ 
+apt-get update && apt-get install --yes --no-install-recommends \
     nano tree openjdk-$JAVA_VERSION-jre-headless wget zip unzip
 
 export ANDROID_COMMAND_TOOLS_PATH="commandlinetools-linux-8092744_latest.zip"

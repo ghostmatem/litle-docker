@@ -20,3 +20,4 @@ mkdir -p $FLUTTER_SDK \
 
 flutter config --android-sdk "$ANDROID_SDK_ROOT"
 yes | flutter doctor --android-licenses
+

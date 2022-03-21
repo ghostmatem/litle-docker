@@ -15,8 +15,10 @@ ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/platform-tools"
 ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/platforms"
 ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/bin"
 
+
+
 # Java install
-ENV JAVA_VERSION                    11
+ENV JAVA_VERSION                        11
 
 RUN apt-get update && apt-get install --yes --no-install-recommends \ 
     nano tree openjdk-$JAVA_VERSION-jre-headless wget zip unzip
@@ -34,3 +36,13 @@ RUN wget $ANDROID_COMMAND_TOOLS_URL \
 
 RUN yes | sdkmanager --licenses \
     && sdkmanager "cmdline-tools;latest" "tools"
+
+
+# Android platform and tools install
+ENV ANDROID_VERSION                     29
+ENV ANDROID_BUILD_TOOLS_VERSION         29.0.3
+ENV ANDROID_ARCHITECTURE                x86_64
+
+# RUN  yes | sdkmanager "system-images;android-$ANDROID_VERSION;google_apis;$ANDROID_ARCHITECTURE"
+
+RUN  yes | sdkmanager "platforms;android-$ANDROID_VERSION"
