@@ -45,4 +45,4 @@ ENV ANDROID_ARCHITECTURE                x86_64
 
 # RUN  yes | sdkmanager "system-images;android-$ANDROID_VERSION;google_apis;$ANDROID_ARCHITECTURE"
 
-RUN  yes | sdkmanager "platforms;android-$ANDROID_VERSION"
+RUN  yes | sdkmanager "platforms;android-$ANDROID_VERSION" "build-tools;$ANDROID_BUILD_TOOLS_VERSION"

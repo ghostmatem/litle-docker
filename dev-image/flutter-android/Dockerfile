@@ -18,10 +18,12 @@ RUN apt-get update \
 
 
 # Flutter install
-ARG FLUTTER_VERSION             stable
+ENV FLUTTER_VERSION             stable
+
+ADD https://api.github.com/repos/flutter/flutter/compare/${FLUTTER_VERSION}...${FLUTTER_VERSION} /dev/null
 
 RUN mkdir -p $FLUTTER_SDK \
-  && git clone https://github.com/flutter/flutter.git -b ${flutterVersion} $FLUTTER_SDK
+  && git clone https://github.com/flutter/flutter.git -b ${FLUTTER_VERSION} $FLUTTER_SDK
 
 RUN flutter config --android-sdk "$ANDROID_SDK_ROOT" \ 
     && flutter config --no-analytics \
