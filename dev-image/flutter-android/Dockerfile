@@ -31,7 +31,8 @@ RUN flutter config --android-sdk "$ANDROID_SDK_ROOT" \
 
 WORKDIR $APP_PATH
 
-COPY entrypoint.sh .
+COPY entrypoint.sh /home
 
 EXPOSE ${PORT}
 
+ENTRYPOINT bash /home/entrypoint.sh
