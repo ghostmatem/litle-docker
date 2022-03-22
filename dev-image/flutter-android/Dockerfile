@@ -29,9 +29,12 @@ RUN flutter config --android-sdk "$ANDROID_SDK_ROOT" \
     && flutter config --no-analytics \
     && yes | flutter doctor --android-licenses
 
+RUN mkdir /home/out
+
 WORKDIR $APP_PATH
 
 COPY entrypoint.sh /home
+COPY ../app .
 
 EXPOSE ${PORT}
 
