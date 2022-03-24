@@ -34,7 +34,7 @@ RUN mkdir /home/out
 WORKDIR $APP_PATH
 
 COPY entrypoint.sh /home
-COPY ../app .
+COPY app .
 
 EXPOSE ${PORT}
 
