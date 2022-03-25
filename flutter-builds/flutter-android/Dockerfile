@@ -19,7 +19,7 @@ RUN apt-get update \
 
 # Android platform and tools install
 ENV ANDROID_VERSION                     32
-ENV ANDROID_BUILD_TOOLS_VERSION         33.0.0-rc2 
+ENV ANDROID_BUILD_TOOLS_VERSION         32.0.0 
 ENV ANDROID_ARCHITECTURE                x86_64
 
 # RUN  yes | sdkmanager "system-images;android-$ANDROID_VERSION;google_apis;$ANDROID_ARCHITECTURE"

@@ -10,4 +10,4 @@ set -e
 flutter clean
 flutter pub get
 flutter build apk
-mv build/app/outputs/flutter-apk/* home/out/
+cp build/app/outputs/flutter-apk/* /home/out/
