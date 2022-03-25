@@ -13,17 +13,15 @@ ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin"
 ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/tools/bin"
 ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/platform-tools"
 ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/platforms"
-ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/emulator"
 ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/bin"
 
 
 
-
 # Java install
-ENV JAVA_VERSION                    11
+ENV JAVA_VERSION                        11
 
 RUN apt-get update && apt-get install --yes --no-install-recommends \ 
-    openjdk-$JAVA_VERSION-jre-headless wget unzip
+    nano tree openjdk-$JAVA_VERSION-jre-headless wget zip unzip
 
 
 # Android - command-tools install
@@ -36,30 +34,15 @@ RUN wget $ANDROID_COMMAND_TOOLS_URL \
     && mv $ANDROID_COMMAND_TOOLS/cmdline-tools $ANDROID_COMMAND_TOOLS/tools \
     && rm $ANDROID_COMMAND_TOOLS_PATH
 
-
-# Android install build-tools
-ENV ANDROID_VERSION                 30
-ENV ANDROID_BUILD_TOOLS_VERSION     30.0.2
-ENV ANDROID_ARCHITECTURE            x86_64
-
-# ex   ;30.0.4
-ENV ANDROID_PLATFORM_TOOLS_VERSION=""
-ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/build-tools/${ANDROID_BUILD_TOOLS_VERSION}"
-
 RUN yes | sdkmanager --licenses \
-    && yes | sdkmanager --update \
-    && yes | sdkmanager "platforms;android-$ANDROID_VERSION"  \
-      "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \
-      "platform-tools$ANDROID_PLATFORM_TOOLS_VERSION" \
-      "tools" \
-      "emulator" \
-      "system-images;android-$ANDROID_VERSION;google_apis_playstore;$ANDROID_ARCHITECTURE"
+    && sdkmanager "cmdline-tools;latest" "tools"
 
 
-# Gradle install
-RUN apt-get --yes --no-install-recommends install gradle \
-    && rm -rf /var/lib/{apt,dpkg,cache,log}
+# Android platform and tools install
+ENV ANDROID_VERSION                     32
+ENV ANDROID_BUILD_TOOLS_VERSION         33.0.0-rc2 
+ENV ANDROID_ARCHITECTURE                x86_64
 
-# /home/dev-tools/Android/SDK/cmdline-tools/bin
+# RUN  yes | sdkmanager "system-images;android-$ANDROID_VERSION;google_apis;$ANDROID_ARCHITECTURE"
 
-# path -  export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools:$ANDROID_HOME/cmdline-tools/bin:$ANDROID_HOME/platform-tools:$PATH" \
+RUN  yes | sdkmanager "platforms;android-$ANDROID_VERSION" "build-tools;$ANDROID_BUILD_TOOLS_VERSION"
