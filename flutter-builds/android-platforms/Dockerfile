@@ -37,12 +37,3 @@ RUN wget $ANDROID_COMMAND_TOOLS_URL \
 RUN yes | sdkmanager --licenses \
     && sdkmanager "cmdline-tools;latest" "tools"
 
-
-# Android platform and tools install
-ENV ANDROID_VERSION                     32
-ENV ANDROID_BUILD_TOOLS_VERSION         33.0.0-rc2 
-ENV ANDROID_ARCHITECTURE                x86_64
-
-# RUN  yes | sdkmanager "system-images;android-$ANDROID_VERSION;google_apis;$ANDROID_ARCHITECTURE"
-
-RUN  yes | sdkmanager "platforms;android-$ANDROID_VERSION" "build-tools;$ANDROID_BUILD_TOOLS_VERSION"

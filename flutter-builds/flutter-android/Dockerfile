@@ -1,4 +1,4 @@
-FROM android-platforms
+FROM android-sdk
 
 ENV FLUTTER_HOME                 $DEV_ROOT/flutter
 ENV FLUTTER_SDK                  $FLUTTER_HOME/flutter-sdk
@@ -16,6 +16,15 @@ RUN apt-get update \
     && apt-get install --yes --no-install-recommends -y \ 
     bash curl file git libglu1-mesa xz-utils
 
+
+# Android platform and tools install
+ENV ANDROID_VERSION                     32
+ENV ANDROID_BUILD_TOOLS_VERSION         33.0.0-rc2 
+ENV ANDROID_ARCHITECTURE                x86_64
+
+# RUN  yes | sdkmanager "system-images;android-$ANDROID_VERSION;google_apis;$ANDROID_ARCHITECTURE"
+
+RUN  yes | sdkmanager "platforms;android-$ANDROID_VERSION" "build-tools;$ANDROID_BUILD_TOOLS_VERSION"
 
 # Flutter install
 ENV FLUTTER_VERSION             stable
