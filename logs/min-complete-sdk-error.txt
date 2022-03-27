@@ -1,0 +1,24 @@
+* What went wrong:
+Execution failed for task ':app:checkReleaseAarMetadata'.
+> Multiple task action failures occurred:
+   > A failure occurred while executing com.android.build.gradle.internal.tasks.CheckAarMetadataWorkAction
+      > The minCompileSdk (31) specified in a
+        dependency's AAR metadata (META-INF/com/android/build/gradle/aar-metadata.properties)
+        is greater than this module's compileSdkVersion (android-29).
+        Dependency: androidx.window:window-java:1.0.0-beta04.
+        AAR metadata file: /root/.gradle/caches/transforms-2/files-2.1/ad201fac15a88598107ec645f351f5b4/jetified-window-java-1.0.0-beta04/META-INF/com/android/build/gradle/aar-metadata.properties.
+   > A failure occurred while executing com.android.build.gradle.internal.tasks.CheckAarMetadataWorkAction
+      > The minCompileSdk (31) specified in a
+        dependency's AAR metadata (META-INF/com/android/build/gradle/aar-metadata.properties)
+        is greater than this module's compileSdkVersion (android-29).
+        Dependency: androidx.window:window:1.0.0-beta04.
+        AAR metadata file: /root/.gradle/caches/transforms-2/files-2.1/03c633e46d75bfb21f082f0417f55161/jetified-window-1.0.0-beta04/META-INF/com/android/build/gradle/aar-metadata.properties.
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 7m 11s
+Running Gradle task 'assembleRelease'...                          472.6s
+Gradle task assembleRelease failed with exit code 1
